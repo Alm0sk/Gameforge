@@ -6,96 +6,49 @@ CREATE KEYSPACE IF NOT EXISTS statistiques WITH REPLICATION = { 'class' : 'Simpl
 
 -- Create a table
 CREATE TABLE IF NOT EXISTS statistiques.cassandra_statistiques (
-    id UUID PRIMARY KEY,
+    id UUID,
     player_id int,
     xp int,
     types_action_attaque int,
     types_action_defense int,
     victoire int,
-    timestamp_evenement timestamp
+    timestamp_evenement timestamp,
+    PRIMARY KEY (player_id, id)
 );
+
+
 
 -- Insert some data
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque,types_action_defense,victoire,timestamp_evenement)
-VALUES (uuid(),1,15,1,0,0, toTimeStamp(now()));
+(id, player_id, types_action_defense, victoire, timestamp_evenement)
+VALUES (uuid(), 1, 1 , 1 ,'2024-11-06 12:00:00');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 23, 1, 0, 0, toTimeStamp(now()));
+(id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 1, 1, 10, '2024-11-06 12:00:01');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 30, 0, 1, 0, toTimeStamp(now()));
+(id, player_id, victoire, timestamp_evenement)
+VALUES (uuid(), 1, 1, '2024-11-06 12:00:02');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 36, 1, 0, 0, toTimeStamp(now()));
+(id, player_id, types_action_attaque, timestamp_evenement)
+VALUES (uuid(), 1, 1, '2024-11-06 12:00:03');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 36, 0, 1, 0, toTimeStamp(now()));
+(id, player_id, xp, victoire, timestamp_evenement)
+VALUES (uuid(), 1, 10, 1, '2024-11-06 12:00:04');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 2, 12, 1, 0, 0, toTimeStamp(now()));
+(id, player_id, types_action_defense, timestamp_evenement)
+VALUES (uuid(), 2, 1, '2024-11-06 12:00:04');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 2, 16, 0, 1, 0, toTimeStamp(now()));
+(id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 2, 1, 10, '2024-11-06 12:00:05');
 
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 2, 23, 1, 0, 0, toTimeStamp(now()));
 
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 2, 24, 0, 1, 0, toTimeStamp(now()));
+-- Select data
 
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 10, 1, 0, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 15, 0, 1, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 17, 1, 0, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 21, 0, 1, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 40, 1, 0, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 46, 0, 1, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 2, 24, 1, 0, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 2, 29, 0, 1, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 21, 1, 0, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 26, 0, 1, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 46, 1, 0, 0, toTimeStamp(now()));
-
-INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, xp, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 58, 0, 1, 0, toTimeStamp(now()));
+-- Total des victoires par joueur
+SELECT player_id AS "ID joueur", sum(victoire) AS "Total victoires" FROM statistiques.cassandra_statistiques GROUP BY player_id;
