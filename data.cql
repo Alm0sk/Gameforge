@@ -18,7 +18,14 @@ CREATE TABLE IF NOT EXISTS cassandra_statistiques (
 -- Insert some data
 INSERT INTO cassandra_statistiques
 (player_id, xp, types_action_attaque,types_action_defense,victoire,timestamp_evenement)
-VALUES ('9876', 2, toTimeStamp(now()));
-INSERT INTO store.shopping_cart
-(userid, item_count, last_update_timestamp)
-VALUES ('1234', 5, toTimeStamp(now()));
+VALUES ('1','1','1','0','0', toTimeStamp(now()));
+
+INSERT INTO cassandra_statistiques
+(player_id, xp, types_action_attaque,types_action_defense,victoire,timestamp_evenement)
+VALUES ('1', '1','0','1','0', toTimeStamp(now()));
+
+INSERT INTO cassandra_statistiques
+(player_id, xp, types_action_attaque,types_action_defense,victoire,timestamp_evenement)
+VALUES ('1','1','1','0','0', toTimeStamp(now()));
+
+
