@@ -55,3 +55,6 @@ SELECT player_id                 AS "ID joueur",
        sum(xp)                   AS "Total XP"
 FROM statistiques.cassandra_statistiques
 GROUP BY player_id;
+
+-- Supprimer un joueur
+DELETE FROM statistiques.cassandra_statistiques WHERE player_id = 2;
