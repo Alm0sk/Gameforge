@@ -4,7 +4,7 @@ DROP KEYSPACE IF EXISTS statistiques;
 -- Le keyspace
 CREATE KEYSPACE IF NOT EXISTS statistiques WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
 
--- Create a table
+-- Création de la table
 CREATE TABLE IF NOT EXISTS statistiques.cassandra_statistiques
 (
     id                   UUID,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS statistiques.cassandra_statistiques
     PRIMARY KEY (player_id, id)
 );
 
--- Insert some data
+-- Insertion de données
 INSERT INTO statistiques.cassandra_statistiques
     (id, player_id, types_action_defense, victoire, timestamp_evenement)
 VALUES (uuid(), 1, 1, 1, '2024-11-06 12:00:00');
