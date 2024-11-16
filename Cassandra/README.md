@@ -52,26 +52,61 @@ Insertion de données de test pour des joueurs avec la totalité des actions :
 
 ```sql
 INSERT INTO statistiques.cassandra_statistiques
-    (id, player_id, types_action_defense, victoire, timestamp_evenement)
-VALUES (uuid(), 1, 1, 1, '2024-11-06 12:00:00');
+    (id, player_id, types_action_attaque, types_action_defense, victoire, timestamp_evenement)
+VALUES (uuid(), 1, 0, 1, 1, '2024-11-06 12:00:00');
 ```
 
-Insertion de données de test pour les joueurs avec des actions variées (ici seulement gain de victoire et de XP :
+Insertion de données de test pour les joueurs avec des actions variées (ici seulement le type d’action attaque) :s
+```sql
+INSERT INTO statistiques.cassandra_statistiques
+    (id, player_id, types_action_attaque, timestamp_evenement)
+VALUES (uuid(), 1, 1, '2024-11-06 12:00:00');
+```
+*Dans un cas réel, le timestamp_evenement sera surement* **toTimestamp(now())**
 
-Utiliser toTimestamp(now()) pour générer un timestamp actuel au moment de l'insertion
-4. Opérations CRUD
-   • Création / Insertion : Les événements sont ajoutés pour chaque joueur avec un UUID généré aléatoirement.
-   • Suppression : Suppression des données d’un joueur spécifique (ex : player_id = 2).
+#### Opérations CRUD
+   • **Création / Insertion** : Les événements sont ajoutés pour chaque joueur avec un UUID généré aléatoirement.
+   • **Suppression** : Suppression des données d’un joueur spécifique (ex : player_id = 2).
+ ```sql
+ DELETE FROM statistiques.cassandra_statistiques WHERE player_id = 2;
+ ```
 
+   • **Lecture** : Les données sont lues pour obtenir les statistiques d’un joueur spécifique (ex : player_id = 1).
+  ```sql
+  SELECT * FROM statistiques.cassandra_statistiques WHERE player_id = 1;
+  ```
 
+   • **Mise à jour** : Mise à jour des données d’un joueur spécifique (ex : player_id = 1).
+ ```sql
+ UPDATE statistiques.cassandra_statistiques SET xp = 100 WHERE player_id = 1;
+ ```
 
-5. Déploiement et Exécution
-   Pour initialiser et gérer la base de données :
+*partie ci-dessous à supprimer peut etre*
+#### Indexation
+L’indexation des données est essentielle pour accélérer les requêtes de recherche. 
+Un index est créé sur le champ timestamp_evenement pour accélérer les requêtes de recherche par date.
 
+```sql
+CREATE INDEX IF NOT EXISTS timestamp_evenement_idx ON statistiques.cassandra_statistiques (timestamp_evenement);
+```
 
-6. Requêtes d’Agrégation pour les Classements
-   L’analyse des données s’effectue par des requêtes d’agrégation pour obtenir des classements de joueurs par période et par type d’action. Ces classements sont essentiels pour suivre l’engagement et les performances des joueurs.
-   Exemple de Requête pour les Totaux d’Actions et d’Expérience par Joueur
+#### Requêtes d’Agrégation pour les Classements
+L’analyse des données s’effectue par des requêtes d’agrégation pour obtenir des classements de joueurs par période et par type d’action. Ces classements sont essentiels pour suivre l’engagement et les performances des joueurs.
+Exemple de Requête pour les Totaux d’Actions et d’Expérience par Joueur
+
+```sql
+SELECT player_id                 AS "ID joueur",
+       sum(victoire)             AS "Total victoires",
+       sum(types_action_attaque) AS "Total attaques",
+       sum(types_action_defense) AS "Total défenses",
+       sum(xp)                   AS "Total XP"
+FROM statistiques.cassandra_statistiques
+GROUP BY player_id;
+```
+
+Ce qui nous donne :
+
+![img.png](Images/retour_moyenne.png)
 
 
 7. Fonctionnalités de Classement
