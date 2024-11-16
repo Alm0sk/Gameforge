@@ -47,6 +47,7 @@ INSERT INTO statistiques.cassandra_statistiques
 VALUES (uuid(), 2, 1, 10, '2024-11-06 12:00:05');
 
 
+/*
 -- Total des victoires par joueur
 SELECT player_id                 AS "ID joueur",
        sum(victoire)             AS "Total victoires",
@@ -58,3 +59,4 @@ GROUP BY player_id;
 
 -- Supprimer un joueur
 DELETE FROM statistiques.cassandra_statistiques WHERE player_id = 2;
+  */
