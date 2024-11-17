@@ -140,9 +140,11 @@ GROUP BY player_id;
 Ce qui nous donne :
 
 *Ensembles des informations brut utilisées pour chaques*
+
 ![img.png](Images/donnees_brut.png)
 
 *Moyennes des informations pour chaques joueurs*
+
 ![img.png](Images/retour_moyenne.png)
 
 

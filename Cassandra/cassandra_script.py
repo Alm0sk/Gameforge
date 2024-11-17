@@ -28,8 +28,12 @@ print("Affichage des statistiques pour le mois de novembre 2024")
 ### Exécution des requêtes
 
 # Résultats sans classement
+
+print("")
+print("-------------------")
 print("")
 print("Affichage des résultats sans classement")
+print("")
 rows = session.execute(query, (start_date, end_date))
 
 print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
@@ -43,13 +47,40 @@ print("")
 print("Affichage des résultats avec classement")
 print("")
 
+# Résultats par victoires
+print("Classement des Joueurs par victoires")
+rows = session.execute(query, (start_date, end_date))
+sorted_rows_victoires = sorted(rows, key=lambda row: row[1], reverse=True)
+print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
+for row in sorted_rows_victoires:
+    print(f"{row[0]:<10} {row[1]:<15} {row[2]:<15} {row[3]:<15} {row[4]:<10}")
+print("")
+
+# Résultats par attaques
+print("Classement des Joueurs par attaques")
+rows = session.execute(query, (start_date, end_date))
+sorted_rows_attaques = sorted(rows, key=lambda row: row[2], reverse=True)
+print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
+for row in sorted_rows_attaques:
+    print(f"{row[0]:<10} {row[1]:<15} {row[2]:<15} {row[3]:<15} {row[4]:<10}")
+print("")
+
+# Résultats par défenses
+print("Classement des Joueurs par défenses")
+rows = session.execute(query, (start_date, end_date))
+sorted_rows_defenses = sorted(rows, key=lambda row: row[3], reverse=True)
+print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
+for row in sorted_rows_defenses:
+    print(f"{row[0]:<10} {row[1]:<15} {row[2]:<15} {row[3]:<15} {row[4]:<10}")
+print("")
+
 # Résultats par xp
 print("Classement des Joueurs par xp")
 rows = session.execute(query, (start_date, end_date))
-sorted_rows = sorted(rows, key=lambda row: row[4], reverse=True)
+sorted_rows_xp = sorted(rows, key=lambda row: row[4], reverse=True)
 
 print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
-for row in sorted_rows:
+for row in sorted_rows_xp:
     print(f"{row[0]:<10} {row[1]:<15} {row[2]:<15} {row[3]:<15} {row[4]:<10}")
 
 # Fermeture de la connexion
