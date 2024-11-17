@@ -5,6 +5,9 @@ Projet mis en place pour le cours de NoSQL de Mr Soltani dans le cadre du master
 ## Sommaire
 
 * [Contexte](#contexte)
+    * [Cahier des charges](#cahier-des-charges)
+    * [Objectif](#objectif)
+    * [Schéma de la base de données](#schéma-de-la-base-de-données)
 * [Mise en place de l'environnement](#mise-en-place-de-lenvironnement)
     * [Prérequis](#prérequis)
     * [Lancer le container Docker](#lancer-le-container-docker)
