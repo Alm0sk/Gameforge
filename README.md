@@ -30,6 +30,14 @@ Concevoir une architecture multi-base NoSQL cConcevoir une architecture multi-ba
 - Assurer une réactivité optimale pour les interactions en temps réel entre les joueurs.
 - Permettre des analyses de statistiques et de classements en continu pour des décisions de gameplay et de progression.
 
+### Schéma de la base de données
+
+![Schéma de la base de données](Images/chart.png)
+
+- **Cassandra** : affichage des statistiques et classements des joueurs sur le mois de novembre 2024. [Lien vers la documentation Cassandra](Cassandra/README.md)
+- **MongoDB** : gestion des profils de joueurs et de leurs inventaires. [Lien vers la documentation MongoDB](MongoDB/README.md)
+- **Redis** : gestion des interactions en temps réel entre les joueurs. [Lien vers la documentation Redis](Redis/README.md)
+
 ## Mise en place de l'environnement
 
 *Pour travailler de manière efficace, nous avons opté pour un container Docker qui héberge les différentes technologie
@@ -67,14 +75,14 @@ La mise en place, l'utilisation et le code produit est détaillé dans le fichie
 
 [Lien vers la documentation Cassandra](Cassandra/README.md)
 
-### REDIS
-
-**TODO**
-
-[Lien vers la documentation Redis](Redis/README.md)
-
 ### MONGODB
 
 **TODO**
 
 [Lien vers la documentation MongoDB](MongoDB/README.md)
+
+### REDIS
+
+**TODO**
+
+[Lien vers la documentation Redis](Redis/README.md)
