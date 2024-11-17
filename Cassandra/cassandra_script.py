@@ -2,8 +2,8 @@ from cassandra.cluster import Cluster
 from datetime import datetime
 
 # Configuration de la connexion
-cluster = Cluster(['127.0.0.1'])
-session = cluster.connect('statistiques')
+cluster = Cluster(['127.0.0.1']) # Le serveur Cassandra tourne sur le localhost depuis le container docker
+session = cluster.connect('statistiques') # Connection au keyspace statistiques
 
 # Période de temps pour les statistiques (ici le mois de novembre 2024)
 start_date = datetime(2024, 11, 1, 0, 0, 0)
@@ -32,8 +32,7 @@ print("Affichage des statistiques pour le mois de novembre 2024")
 print("")
 print("-------------------")
 print("")
-print("Affichage des résultats sans classement")
-print("")
+print("Affichage des résultats sans classement [Novembre 2024]")
 rows = session.execute(query, (start_date, end_date))
 
 print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
@@ -48,7 +47,7 @@ print("Affichage des résultats avec classement")
 print("")
 
 # Résultats par victoires
-print("Classement des Joueurs par victoires")
+print("Classement des Joueurs par victoires [Novembre 2024]")
 rows = session.execute(query, (start_date, end_date))
 sorted_rows_victoires = sorted(rows, key=lambda row: row[1], reverse=True)
 print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
@@ -57,7 +56,7 @@ for row in sorted_rows_victoires:
 print("")
 
 # Résultats par attaques
-print("Classement des Joueurs par attaques")
+print("Classement des Joueurs par attaques [Novembre 2024]")
 rows = session.execute(query, (start_date, end_date))
 sorted_rows_attaques = sorted(rows, key=lambda row: row[2], reverse=True)
 print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
@@ -66,7 +65,7 @@ for row in sorted_rows_attaques:
 print("")
 
 # Résultats par défenses
-print("Classement des Joueurs par défenses")
+print("Classement des Joueurs par défenses [Novembre 2024]")
 rows = session.execute(query, (start_date, end_date))
 sorted_rows_defenses = sorted(rows, key=lambda row: row[3], reverse=True)
 print(f"{'ID joueur':<10} {'Total victoires':<15} {'Total attaques':<15} {'Total défenses':<15} {'Total XP':<10}")
@@ -75,7 +74,7 @@ for row in sorted_rows_defenses:
 print("")
 
 # Résultats par xp
-print("Classement des Joueurs par xp")
+print("Classement des Joueurs par xp [Novembre 2024]")
 rows = session.execute(query, (start_date, end_date))
 sorted_rows_xp = sorted(rows, key=lambda row: row[4], reverse=True)
 
