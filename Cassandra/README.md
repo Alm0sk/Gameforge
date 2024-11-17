@@ -1,8 +1,34 @@
-## Entrer dans le container
+## Mise en place de l'environnement Cassandra
 
-### Cassandra
+### Entrer dans le container
+
 ```bash
 docker exec -it cassandra cqlsh
+```
+
+### Environment Virtuel python
+
+*Le development de l'application a été fait sur Linux, il est possible que les commandes diffèrent sur Windows.*
+
+**Sur linux**
+```bash
+python -m venv .venv &&
+source .venv/bin/activate &&
+pip install --upgrade pip &&
+pip install cassandra-driver
+```
+
+**Sur Windows**
+```bash
+python -m venv .venv &&
+.venv\Scripts\activate.bat &&
+pip install --upgrade pip &&
+pip install cassandra-driver
+```
+
+**Pour désactiver l'environnement virtuel**
+```bash
+deactivate
 ```
 
 ## Utilisation de la base de données Cassandra NoSQL

@@ -1,5 +1,9 @@
 .idea
 
+# Cassandra
+Cassandra/.venv/
+Cassandra/venv/
+
 # MongoDB
 MongoDB/.venv/
 MongoDB/venv/
