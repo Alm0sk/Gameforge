@@ -139,7 +139,7 @@ GROUP BY player_id;
 
 Ce qui nous donne :
 
-*Ensembles des informations brut utilisées pour chaques*
+*Ensembles des informations brut utilisées*
 
 ![img.png](Images/donnees_brut.png)
 

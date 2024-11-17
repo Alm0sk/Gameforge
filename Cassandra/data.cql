@@ -61,16 +61,49 @@ INSERT INTO statistiques.cassandra_statistiques
 VALUES (uuid(), 3, 1, 20, '2024-10-06 12:00:05');
 
 
-/*
--- Total des victoires par joueur
-SELECT player_id                 AS "ID joueur",
-       sum(victoire)             AS "Total victoires",
-       sum(types_action_attaque) AS "Total attaques",
-       sum(types_action_defense) AS "Total défenses",
-       sum(xp)                   AS "Total XP"
-FROM statistiques.cassandra_statistiques
-GROUP BY player_id;
+-- Données supplémentaires pour générée par IA
+-- Génération de données pour novembre 2024 (jours du 4 au 8)
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 1, 1, 10, '2024-11-04 08:00:00');
 
--- Supprimer un joueur
-DELETE FROM statistiques.cassandra_statistiques WHERE player_id = 2;
-  */
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_defense, xp, timestamp_evenement)
+VALUES (uuid(), 1, 1, 15, '2024-11-04 09:30:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, victoire, timestamp_evenement)
+VALUES (uuid(), 2, 1, '2024-11-04 11:00:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 2, 1, 20, '2024-11-05 08:15:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_defense, xp, timestamp_evenement)
+VALUES (uuid(), 3, 1, 25, '2024-11-05 10:45:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, victoire, timestamp_evenement)
+VALUES (uuid(), 3, 1, '2024-11-05 13:00:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 4, 1, 30, '2024-11-06 07:30:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_defense, xp, timestamp_evenement)
+VALUES (uuid(), 4, 1, 35, '2024-11-06 09:45:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, victoire, timestamp_evenement)
+VALUES (uuid(), 5, 1, '2024-11-06 12:00:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 5, 1, 40, '2024-11-07 08:00:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_defense, xp, timestamp_evenement)
+VALUES (uuid(), 6, 1, 45, '2024-11-07 10:30:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, victoire, timestamp_evenement)
+VALUES (uuid(), 6, 1, '2024-11-07 13:15:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 7, 1, 50, '2024-11-08 09:00:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_defense, xp, timestamp_evenement)
+VALUES (uuid(), 7, 1, 55, '2024-11-08 11:30:00');
+
+INSERT INTO statistiques.cassandra_statistiques (id, player_id, victoire, timestamp_evenement)
+VALUES (uuid(), 8, 1, '2024-11-08 14:00:00');
