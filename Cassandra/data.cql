@@ -76,10 +76,10 @@ INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_att
 VALUES (uuid(), 2, 1, 20, '2024-11-05 08:15:00');
 
 INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_defense, xp, timestamp_evenement)
-VALUES (uuid(), 3, 1, 25, '2024-11-05 10:45:00');
+VALUES (uuid(), 4, 1, 25, '2024-11-05 10:45:00');
 
 INSERT INTO statistiques.cassandra_statistiques (id, player_id, victoire, timestamp_evenement)
-VALUES (uuid(), 3, 1, '2024-11-05 13:00:00');
+VALUES (uuid(), 4, 1, '2024-11-05 13:00:00');
 
 INSERT INTO statistiques.cassandra_statistiques (id, player_id, types_action_attaque, xp, timestamp_evenement)
 VALUES (uuid(), 4, 1, 30, '2024-11-06 07:30:00');
