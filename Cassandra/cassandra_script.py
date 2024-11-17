@@ -1,3 +1,4 @@
+import subprocess
 from cassandra.cluster import Cluster
 from datetime import datetime
 

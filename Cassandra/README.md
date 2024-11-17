@@ -34,6 +34,7 @@ docker exec -it cassandra cqlsh
 
 ### Environment Virtuel python
 
+La mise en place de l'environnement virtuel python nécessaire pour l'execution du script python.
 *Le development de l'application a été fait sur Linux, il est possible que les commandes diffèrent sur Windows.*
 
 **Sur linux**
