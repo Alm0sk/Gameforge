@@ -46,6 +46,11 @@ INSERT INTO statistiques.cassandra_statistiques
     (id, player_id, types_action_attaque, xp, timestamp_evenement)
 VALUES (uuid(), 2, 1, 10, '2024-11-06 12:00:05');
 
+INSERT INTO statistiques.cassandra_statistiques
+(id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 2, 1, 20, '2024-11-06 12:00:05');
+
+
 
 /*
 -- Total des victoires par joueur

@@ -31,6 +31,13 @@ pip install cassandra-driver
 deactivate
 ```
 
+#### Execution du script python
+
+```bash
+python cassandra_script.py
+```
+*Dans le repertoire Cassandra*
+
 ## Utilisation de la base de données Cassandra NoSQL
 
 ### Modèle de Données
