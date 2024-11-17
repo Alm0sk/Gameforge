@@ -8,3 +8,4 @@ MongoDB/__pycache__/
 # Redis
 Redis/.venv/
 Redis/venv/
+Redis/__pycache__/
