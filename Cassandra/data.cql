@@ -47,9 +47,18 @@ INSERT INTO statistiques.cassandra_statistiques
 VALUES (uuid(), 2, 1, 10, '2024-11-06 12:00:05');
 
 INSERT INTO statistiques.cassandra_statistiques
-(id, player_id, types_action_attaque, xp, timestamp_evenement)
+    (id, player_id, types_action_attaque, xp, timestamp_evenement)
 VALUES (uuid(), 2, 1, 20, '2024-11-06 12:00:05');
 
+
+-- Insertion de données pour un troisième joueur en dehors du mois de novembre pour verifier que le classement ne prend en compte que les données du mois de novembre
+INSERT INTO statistiques.cassandra_statistiques
+    (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 3, 1, 20, '2024-12-06 12:00:05');
+
+INSERT INTO statistiques.cassandra_statistiques
+    (id, player_id, types_action_attaque, xp, timestamp_evenement)
+VALUES (uuid(), 3, 1, 20, '2024-10-06 12:00:05');
 
 
 /*
