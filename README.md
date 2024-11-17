@@ -76,16 +76,14 @@ docker compose down
 Le code Python est dans le fichier `cassandra_script.py` et le fichier `data.cql` contient le modèle de données.
 La mise en place, l'utilisation et le code produit est détaillé dans le fichier `README.md` du répertoire Cassandra.
 
-[Lien vers la documentation Cassandra](Cassandra/README.md)
+[Lien vers la documentation Cassandra](Cassandra)
 
 ### MONGODB
 
 **TODO**
 
-[Lien vers la documentation MongoDB](MongoDB/README.md)
+[Lien vers la documentation MongoDB](MongoDB)
 
 ### REDIS
 
-**TODO**
-
-[Lien vers la documentation Redis](Redis/README.md)
+[Lien vers la documentation Redis](Redis)
