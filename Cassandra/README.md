@@ -196,7 +196,7 @@ Le joueur d'ID 3 a volontairement des données en dehors du mois de novembre 202
 
 *Moyennes des informations pour chaques joueurs*
 
-![img.png](Images/retour_moyenne.png)
+![img.png](Images/retour_moyennes.png)
 
 ## Fonctionnalités de Classement
    Un script sera exécuté pour générer les classements selon les totaux d’actions pour chaque joueur (attaques,
