@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 # connexion mongodb
 MONGO_CLIENT = MongoClient("mongodb://localhost:27017/")
-MONGO_DATABASE = MONGO_CLIENT["TP_MMO_M1"]
+MONGO_DATABASE = MONGO_CLIENT["GameData"]
 COL_PLAYERS = MONGO_DATABASE["player_data"]
 COL_ITEMS = MONGO_DATABASE["item_for_inventory"]
 COL_COMPET = MONGO_DATABASE["player_competence"]
