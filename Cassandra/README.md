@@ -1,27 +1,27 @@
 ## Sommaire
 
 - [Mise en place de l'environnement Cassandra](#mise-en-place-de-lenvironnement-cassandra)
-  * [Entrer dans le container](#entrer-dans-le-container-Docker)
-  * [Environment Virtuel python](#environment-virtuel-python)
-    + [Sur linux](#sur-linux)
-    + [Sur Windows](#sur-windows)
-  * [Execution du script python](#execution-du-script-python)
+    * [Entrer dans le container](#entrer-dans-le-container-Docker)
+    * [Environment Virtuel python](#environment-virtuel-python)
+        + [Sur linux](#sur-linux)
+        + [Sur Windows](#sur-windows)
+    * [Execution du script python](#execution-du-script-python)
 - [Utilisation de la base de données Cassandra NoSQL](#utilisation-de-la-base-de-données-cassandra-nosql)
 - [Modèle de Données](#modèle-de-données)
-  * [Keyspace](#keyspace)
-  * [Table des Statistiques des Joueurs](#table-des-statistiques-des-joueurs)
-  * [Colonnes principales](#colonnes-principales)
-  * [Exemple de Données](#exemple-de-données)
-  * [Opérations CRUD](#opérations-crud)
-  * [Indexation](#indexation)
-  * [Requêtes d’Agrégation pour les Classements](#requêtes-dagrégation-pour-les-classements)
+    * [Keyspace](#keyspace)
+    * [Table des Statistiques des Joueurs](#table-des-statistiques-des-joueurs)
+    * [Colonnes principales](#colonnes-principales)
+    * [Exemple de Données](#exemple-de-données)
+    * [Opérations CRUD](#opérations-crud)
+    * [Indexation](#indexation)
+    * [Requêtes d’Agrégation pour les Classements](#requêtes-dagrégation-pour-les-classements)
 - [Fonctionnalités de Classement](#fonctionnalités-de-classement)
-  * [Utilisation du script Python](#utilisation-du-script-python)
-  * [Connection à la base de données Cassandra](#connection-à-la-base-de-données-cassandra)
-  * [Définition de la période de temps](#définition-de-la-période-de-temps)
-  * [Requête pour les Classements](#requête-pour-les-classements)
-  * [Tri des résultats](#tri-des-résultats)
-  * [Exemple de Classement par Points d’Expérience](#exemple-de-classement-par-points-dexpérience)
+    * [Utilisation du script Python](#utilisation-du-script-python)
+    * [Connection à la base de données Cassandra](#connection-à-la-base-de-données-cassandra)
+    * [Définition de la période de temps](#définition-de-la-période-de-temps)
+    * [Requête pour les Classements](#requête-pour-les-classements)
+    * [Tri des résultats](#tri-des-résultats)
+    * [Exemple de Classement par Points d’Expérience](#exemple-de-classement-par-points-dexpérience)
 - [Résultat final de l'execution du script Python](#résultat-final-de-lexecution-du-script-python)
 
 ## Mise en place de l'environnement Cassandra
@@ -77,6 +77,15 @@ Fichier data.cql :
 
 ![modèle de données.png](Images/modèle_de_données.png)
 
+#### Exigences techniques
+
+*Pourquoi Cassandra DB*
+
+Le Pic de charge pouvant atteindre jusqu’à 200 000 requêtes par seconde lors des événements de mise à jour de
+classements ou de récompenses pour une analyse mondial. Cassandra est très adapté à ce genre de contrainte à condition
+d’ajouter un certain nombre de nœuds (une vingtaine) dans le cluster. Cette configuration pourra aussi absorber la
+quantité d’informations à stocker (600 millions d’entrées de statistiques par mois).
+
 #### Keyspace
 
 Le *keyspace* statistiques est configuré avec une stratégie de réplication simple pour une répartition équilibrée des
@@ -109,11 +118,12 @@ CREATE TABLE IF NOT EXISTS statistiques.cassandra_statistiques
 
 #### Colonnes principales :
 
-• player_id : Identifiant unique du joueur.
-• id : UUID de l'événement, utilisé pour garantir l'unicité et trier les événements par ordre chronologique.
-• types_action_attaque, types_action_defense, victoire : Enregistre le type d’action effectuée par le joueur.
-• xp : Points d’expérience gagnés lors de l’événement.
-• timestamp_evenement : Date et heure de l’événement pour suivre les actions dans le temps.
+• **player_id** : Identifiant unique du joueur.
+• **id** : UUID de l'événement, utilisé pour garantir l'unicité et trier les événements par ordre chronologique.
+• **types_action_attaque, types_action_defense, victoire** : Enregistre le type d’action effectuée par le joueur.
+• **xp** : Points d’expérience gagnés lors de l’événement.
+• **timestamp_evenement** : Date et heure de l’événement pour suivre les actions dans le temps.
+- **PRIMARY KEY permettent** : de récupérer les valeurs pour faire le classement lors de la requête.
 
 #### Exemple de Données
 
@@ -191,7 +201,8 @@ Ce qui nous donne :
 
 *Ensembles des informations brut utilisées*
 
-Le joueur d'ID 3 a volontairement des données en dehors du mois de novembre 2024 pour montrer l'efficacité de la requête de filtrage.
+Le joueur d'ID 3 a volontairement des données en dehors du mois de novembre 2024 pour montrer l'efficacité de la requête
+de filtrage.
 
 ![img.png](Images/donnees_brut.png)
 
@@ -200,10 +211,11 @@ Le joueur d'ID 3 a volontairement des données en dehors du mois de novembre 202
 ![img.png](Images/retour_moyennes.png)
 
 ## Fonctionnalités de Classement
-   Un script sera exécuté pour générer les classements selon les totaux d’actions pour chaque joueur (attaques,
-   défenses, victoires, xp). Les requêtes permettent de :
-   • Obtenir les meilleurs scores par type d’action.
-   • Filtrer les données par période via timestamp_evenement pour des périodes spécifiques (ici le mois de novembre 2024).
+
+Un script sera exécuté pour générer les classements selon les totaux d’actions pour chaque joueur (attaques,
+défenses, victoires, xp). Les requêtes permettent de :
+• Obtenir les meilleurs scores par type d’action.
+• Filtrer les données par période via timestamp_evenement pour des périodes spécifiques (ici le mois de novembre 2024).
 
 ### Utilisation du script Python
 
@@ -215,8 +227,8 @@ L'instalation de la librairie cassandra-driver est nécessaire pour la connexion
 from cassandra.cluster import Cluster
 
 # Configuration de la connexion
-cluster = Cluster(['127.0.0.1']) # Le serveur Cassandra tourne sur le localhost depuis le container docker
-session = cluster.connect('statistiques') # Connection au keyspace statistiques
+cluster = Cluster(['127.0.0.1'])  # Le serveur Cassandra tourne sur le localhost depuis le container docker
+session = cluster.connect('statistiques')  # Connection au keyspace statistiques
 ```
 
 **Définition de la période de temps**
@@ -233,6 +245,7 @@ end_date = datetime(2024, 12, 1, 0, 0, 0)
 
 Les requêtes pour les classements sont exécutées pour obtenir les totaux d’actions par joueur et par type d’action.
 L'option ALLOW FILTERING est utilisée pour autoriser les requêtes de filtrage sur les colonnes non indexées.
+
 ```python
 query = """
 SELECT player_id                 AS "ID joueur",
@@ -259,16 +272,15 @@ for row in sorted_rows_xp:
     print(f"{row[0]:<10} {row[1]:<15} {row[2]:<15} {row[3]:<15} {row[4]:<10}")
 ```
 
- - *rows* contient les résultats de la requête dans la plage du mois de novembre 2024
- - *sorted_rows_xp* contient les résultats triés par ordre décroissant des points d’expérience (sur la colonne d'id 4).
- - Les résultats sont affichés avec les totaux d’actions pour chaque joueur.
+- *rows* contient les résultats de la requête dans la plage du mois de novembre 2024
+- *sorted_rows_xp* contient les résultats triés par ordre décroissant des points d’expérience (sur la colonne d'id 4).
+- Les résultats sont affichés avec les totaux d’actions pour chaque joueur.
 
 Ce qui donne :
 
 *Comme prévu, le joueur d'ID 3 n'apparait pas, car en avec sans statistiques en novembre*
 
 ![img.png](Images/sorted_rows_xp.png)
-
 
 ## Résultat final de l'execution du script Python
 
