@@ -3,8 +3,6 @@
 - [Mise en place de l'environnement Cassandra](#mise-en-place-de-lenvironnement-cassandra)
     * [Entrer dans le container](#entrer-dans-le-container-Docker)
     * [Environment Virtuel python](#environment-virtuel-python)
-        + [Sur linux](#sur-linux)
-        + [Sur Windows](#sur-windows)
     * [Execution du script python](#execution-du-script-python)
 - [Utilisation de la base de données Cassandra NoSQL](#utilisation-de-la-base-de-données-cassandra-nosql)
 - [Modèle de Données](#modèle-de-données)
@@ -118,11 +116,11 @@ CREATE TABLE IF NOT EXISTS statistiques.cassandra_statistiques
 
 #### Colonnes principales :
 
-• **player_id** : Identifiant unique du joueur.
-• **id** : UUID de l'événement, utilisé pour garantir l'unicité et trier les événements par ordre chronologique.
-• **types_action_attaque, types_action_defense, victoire** : Enregistre le type d’action effectuée par le joueur.
-• **xp** : Points d’expérience gagnés lors de l’événement.
-• **timestamp_evenement** : Date et heure de l’événement pour suivre les actions dans le temps.
+- **player_id** : Identifiant unique du joueur.
+- **id** : UUID de l'événement, utilisé pour garantir l'unicité et trier les événements par ordre chronologique.
+- **types_action_attaque, types_action_defense, victoire** : Enregistre le type d’action effectuée par le joueur.
+- **xp** : Points d’expérience gagnés lors de l’événement.
+- **timestamp_evenement** : Date et heure de l’événement pour suivre les actions dans le temps. 
 - **PRIMARY KEY permettent** : de récupérer les valeurs pour faire le classement lors de la requête.
 
 #### Exemple de Données
