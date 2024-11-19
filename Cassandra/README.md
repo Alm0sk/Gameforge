@@ -76,13 +76,13 @@ python cassandra_script.py
 #### Contraintes de charge
 
 Les statistiques des joueurs sont stockées pour une analyse mondiale des performances et des classements. Des volumes
-massifs sont à prévoir, avec un pic de charge pouvant atteindre jusqu’à 200 000 requêtes par seconde lors des événements
+massifs sont à prévoir, avec un pic de charge pouvant atteindre jusqu’à **200 000 requêtes par seconde** lors des événements
 de mise à jour de classements ou de récompenses.
 
 Les données sont stockées pour chaque joueur, incluant ses actions et gains d’expérience. Les statistiques sont
-enregistrées en temps réel de manière à suivre l’évolution des performances des joueurs.
+enregistrées **en temps réel** de manière à suivre l’évolution des performances des joueurs.
 
-Des classements doivent être générés et consultable pour chaque type d’action (attaques, défenses, victoires, xp) sur
+Des classements doivent être générés et consultable pour chaque type d’action (*attaques, défenses, victoires, xp*) sur
 une
 période donnée.
 
@@ -91,18 +91,18 @@ statistiques.
 
 ####  Pourquoi Cassandra DB
 
-Le Pic de charge pouvant atteindre jusqu’à 200 000 requêtes par seconde lors des événements de mise à jour de
+Le Pic de charge pouvant atteindre jusqu’à **200 000 requêtes par seconde** lors des événements de mise à jour de
 classements ou de récompenses pour une analyse mondial. Cassandra est très adapté à ce genre de contrainte à condition
 d’avoir un minimum de nœuds (une vingtaine) dans le cluster. Grâce à sa flexibilité sans schéma, Cassandra DB pourra
 aussi absorber la
-quantité d’informations à stocker (600 millions d’entrées de statistiques par mois), et Cassandra est très performant
+quantité d’informations à stocker (**600 millions d’entrées de statistiques par mois**), et Cassandra est très performant
 pour les opérations de lecture et d'écriture massives.
 
-C'est également une base de données NoSQL distribuée, avec une tolérante aux pannes et hautement évolutive, idéale pour
+C'est également une base de données NoSQL **distribuée**, avec une tolérante aux pannes et hautement évolutive, idéale pour
 stocker des données de jeu massives et critiques,
 sans avoir à définir à l'avance la structure de la base de données.
 
-Il y a également la possibilité de faire des requêtes d'agrégation pour obtenir des classements de joueurs par période
+Il y a également la possibilité de faire des **requêtes d'agrégation** pour obtenir des classements de joueurs par période
 et par type d’action.
 
 En résumer, Cassandra DB est un choix judicieux car :
