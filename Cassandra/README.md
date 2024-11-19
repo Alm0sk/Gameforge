@@ -5,10 +5,10 @@
     * [Environment Virtuel python](#environment-virtuel-python)
     * [Execution du script python](#execution-du-script-python)
 - [Utilisation de la base de données Cassandra NoSQL](#utilisation-de-la-base-de-données-cassandra-nosql)
-- [Modèle de Données](#modèle-de-données)
 - [Exigences techniques](#exigences-techniques)
     * [Contraintes de charge](#contraintes-de-charge)
     * [Pourquoi Cassandra DB](#pourquoi-cassandra-db)
+- [Modèle de Données](#modèle-de-données)
     * [Keyspace](#keyspace)
     * [Table des Statistiques des Joueurs](#table-des-statistiques-des-joueurs)
     * [Colonnes principales](#colonnes-principales)
@@ -71,12 +71,6 @@ python cassandra_script.py
 
 ## Utilisation de la base de données Cassandra NoSQL
 
-### Modèle de Données
-
-Fichier data.cql :
-
-![modèle de données.png](Images/modèle_de_données.png)
-
 ### Exigences techniques
 
 #### Contraintes de charge
@@ -125,6 +119,8 @@ Quelques points négatifs à noter :
 - Il n'est pas adapté pour les requêtes de type JOIN.
 - Il nécessite une infrastructure de matériel robuste pour supporter les charges de travail à grande échelle, et donc
   potentiellement plus coûteuse.
+
+### Modèle de Données
 
 #### Keyspace
 
