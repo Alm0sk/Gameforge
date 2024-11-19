@@ -75,10 +75,3 @@ ZADD interactions 1697078600 "player_3"
 ZINCRBY interactions 10 "player_1"
 ZINCRBY interactions 20 "player_2"
 ZINCRBY interactions 15 "player_3"
-
-for i in {1..1000}
-do
-   HSET attack:$i:$((i+1)) Degats $((RANDOM%50+1))
-HSET attack:$i:$((i+1)) Attack_id $i
-HSET attack:$i:$((i+1)) Date_heure "2024-11-06 10:$((RANDOM%60)):00"
-done

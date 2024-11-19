@@ -6,6 +6,9 @@
     * [Execution du script python](#execution-du-script-python)
 - [Utilisation de la base de données Cassandra NoSQL](#utilisation-de-la-base-de-données-cassandra-nosql)
 - [Modèle de Données](#modèle-de-données)
+- [Exigences techniques](#exigences-techniques)
+    * [Contraintes de charge](#contraintes-de-charge)
+    * [Pourquoi Cassandra DB](#pourquoi-cassandra-db)
     * [Keyspace](#keyspace)
     * [Table des Statistiques des Joueurs](#table-des-statistiques-des-joueurs)
     * [Colonnes principales](#colonnes-principales)
@@ -75,14 +78,54 @@ Fichier data.cql :
 
 ![modèle de données.png](Images/modèle_de_données.png)
 
-#### Exigences techniques
+### Exigences techniques
 
-*Pourquoi Cassandra DB*
+#### Contraintes de charge
+
+Les statistiques des joueurs sont stockées pour une analyse mondiale des performances et des classements. Des volumes
+massifs sont à prévoir, avec un pic de charge pouvant atteindre jusqu’à 200 000 requêtes par seconde lors des événements
+de mise à jour de classements ou de récompenses.
+
+Les données sont stockées pour chaque joueur, incluant ses actions et gains d’expérience. Les statistiques sont
+enregistrées en temps réel de manière à suivre l’évolution des performances des joueurs.
+
+Des classements doivent être générés et consultable pour chaque type d’action (attaques, défenses, victoires, xp) sur
+une
+période donnée.
+
+Ses données sont critiques, et doivent être stockées de manière fiable pour garantir l’intégrité des classements et des
+statistiques.
+
+####  Pourquoi Cassandra DB
 
 Le Pic de charge pouvant atteindre jusqu’à 200 000 requêtes par seconde lors des événements de mise à jour de
 classements ou de récompenses pour une analyse mondial. Cassandra est très adapté à ce genre de contrainte à condition
-d’ajouter un certain nombre de nœuds (une vingtaine) dans le cluster. Cette configuration pourra aussi absorber la
-quantité d’informations à stocker (600 millions d’entrées de statistiques par mois).
+d’avoir un minimum de nœuds (une vingtaine) dans le cluster. Grâce à sa flexibilité sans schéma, Cassandra DB pourra
+aussi absorber la
+quantité d’informations à stocker (600 millions d’entrées de statistiques par mois), et Cassandra est très performant
+pour les opérations de lecture et d'écriture massives.
+
+C'est également une base de données NoSQL distribuée, avec une tolérante aux pannes et hautement évolutive, idéale pour
+stocker des données de jeu massives et critiques,
+sans avoir à définir à l'avance la structure de la base de données.
+
+Il y a également la possibilité de faire des requêtes d'agrégation pour obtenir des classements de joueurs par période
+et par type d’action.
+
+En résumer, Cassandra DB est un choix judicieux car :
+
+- Il est conçu pour gérer des charges de travail massives.
+- Il est tolérant aux pannes et hautement évolutif.
+- Il est flexible sans schéma, idéal pour les jeux vidéo en constante évolution.
+- Il est performant pour les opérations de lecture et d'écriture massives.
+- Il permet des requêtes d'agrégation pour obtenir des classements de joueurs.
+
+Quelques points négatifs à noter :
+
+- Il est difficile de faire des requêtes complexes à cause du modèle sans schémas.
+- Il n'est pas adapté pour les requêtes de type JOIN.
+- Il nécessite une infrastructure de matériel robuste pour supporter les charges de travail à grande échelle, et donc
+  potentiellement plus coûteuse.
 
 #### Keyspace
 
@@ -120,7 +163,7 @@ CREATE TABLE IF NOT EXISTS statistiques.cassandra_statistiques
 - **id** : UUID de l'événement, utilisé pour garantir l'unicité et trier les événements par ordre chronologique.
 - **types_action_attaque, types_action_defense, victoire** : Enregistre le type d’action effectuée par le joueur.
 - **xp** : Points d’expérience gagnés lors de l’événement.
-- **timestamp_evenement** : Date et heure de l’événement pour suivre les actions dans le temps. 
+- **timestamp_evenement** : Date et heure de l’événement pour suivre les actions dans le temps.
 - **PRIMARY KEY permettent** : de récupérer les valeurs pour faire le classement lors de la requête.
 
 #### Exemple de Données
@@ -219,7 +262,7 @@ défenses, victoires, xp). Les requêtes permettent de :
 
 **Connection à la base de données Cassandra**
 
-L'instalation de la librairie cassandra-driver est nécessaire pour la connexion à la base de données.
+L'installation de la librairie cassandra-driver est nécessaire pour la connexion à la base de données.
 
 ```python
 from cassandra.cluster import Cluster

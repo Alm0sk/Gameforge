@@ -73,14 +73,12 @@ docker compose down
 
 ### CassandraDB : affichage des statistiques et classements des joueurs
 
-Le code Python est dans le fichier `cassandra_script.py` et le fichier `data.cql` contient le modèle de données.
-La mise en place, l'utilisation et le code produit est détaillé dans le fichier `README.md` du répertoire Cassandra.
+Le code Python est dans le fichier `Cassandra/cassandra_script.py` et le fichier `Cassandra/data.cql` contient le modèle de données.
+La mise en place, l'utilisation et le code produit est détaillé dans le fichier `Cassandra/README.md` du répertoire Cassandra.
 
 [Lien vers la documentation Cassandra](Cassandra)
 
 ### MONGODB
-
-**TODO**
 
 [Lien vers la documentation MongoDB](MongoDB)
 
