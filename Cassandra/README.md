@@ -22,7 +22,6 @@
     * [Définition de la période de temps](#définition-de-la-période-de-temps)
     * [Requête pour les Classements](#requête-pour-les-classements)
     * [Tri des résultats](#tri-des-résultats)
-    * [Exemple de Classement par Points d’Expérience](#exemple-de-classement-par-points-dexpérience)
 - [Résultat final de l'execution du script Python](#résultat-final-de-lexecution-du-script-python)
 
 ## Mise en place de l'environnement Cassandra
@@ -260,7 +259,7 @@ défenses, victoires, xp). Les requêtes permettent de :
 
 ### Utilisation du script Python
 
-**Connection à la base de données Cassandra**
+#### Connection à la base de données Cassandra
 
 L'installation de la librairie cassandra-driver est nécessaire pour la connexion à la base de données.
 
@@ -272,7 +271,7 @@ cluster = Cluster(['127.0.0.1'])  # Le serveur Cassandra tourne sur le localhost
 session = cluster.connect('statistiques')  # Connection au keyspace statistiques
 ```
 
-**Définition de la période de temps**
+#### Définition de la période de temps
 
 La période de temps pour les classements est définie ici pour le mois de novembre 2024.
 
@@ -282,7 +281,7 @@ start_date = datetime(2024, 11, 1, 0, 0, 0)
 end_date = datetime(2024, 12, 1, 0, 0, 0)
 ```
 
-**Requête pour les Classements**
+#### Requête pour les Classements
 
 Les requêtes pour les classements sont exécutées pour obtenir les totaux d’actions par joueur et par type d’action.
 L'option ALLOW FILTERING est utilisée pour autoriser les requêtes de filtrage sur les colonnes non indexées.
@@ -300,6 +299,8 @@ GROUP BY player_id
 ALLOW FILTERING;
 """
 ```
+
+#### Tri des résultats
 
 Le tri des résultats est effectué pour obtenir le classement par type d’action. (ici les point d'expérience) :
 
